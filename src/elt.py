@@ -12,6 +12,7 @@ def download(symbol,interval,period):
                              auto_adjust=False,
                              prepost=True, # include aftermarket hours
                             )
+    stock_df.columns = stock_df.columns.str.lower().str.replace(' ', '_')
     stock_df.to_pickle(f'./data/{symbol}_{interval}_df.pkl')
     
 def load(symbol,interval):
