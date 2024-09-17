@@ -5,6 +5,17 @@ import numpy as np
 from yfinance import Ticker
 from pykalman import KalmanFilter
 
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from xgboost import XGBClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.model_selection import cross_val_predict
+
+
 def download(symbol,interval,period):
     stock = Ticker(symbol)
     stock_df = stock.history(interval=interval,
